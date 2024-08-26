@@ -271,4 +271,29 @@ for(let i =0; i< a1.length;i++){
      }
     myNew.push(o);
 }
-console.log(myNew)
+console.log(myNew);
+
+
+
+//[1,2,3,4,5,6,7,8,9,10,11,12,13] original array
+// divid in to buckets
+/*
+[1,2,3,4]
+[5,6,7,8]
+[9,10,11,12]
+[1,2,3,4]
+*/
+
+const list = [1,2,3,4,5,6,7,8,9,10,11,12,13];
+const noOfBucket = 4
+const itmInBucket = Math.ceil(list.length / noOfBucket);
+const tmpArray = Array.from(new Array(noOfBucket), (_, i) => i);
+const buketItems = tmpArray.reduce((prev, curr, i, arr) => {
+  const startIdx = i * itmInBucket;
+  const endIdx = startIdx + itmInBucket;
+  let subSet = list.slice(startIdx, endIdx);
+  if (subSet.length < itmInBucket) {
+    subSet = [...subSet, ...list.slice(0, itmInBucket - subSet.length)]
+  }
+  return [...prev, subSet];
+}, []);
