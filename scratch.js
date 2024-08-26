@@ -297,3 +297,11 @@ const buketItems = tmpArray.reduce((prev, curr, i, arr) => {
   }
   return [...prev, subSet];
 }, []);
+/* function base solution with args */
+const getSubsets = ({fullArray, idx, noOfItms}) => {
+  const startIdx = idx * noOfItms;
+  const endIdx = startIdx + noOfItms;
+  const subSet = fullArray.slice(startIdx, endIdx);
+  return subSet.length < noOfItms ? [...subSet, ...fullArray.slice(0, noOfItms - subSet.length)] : subSet;
+}
+console.log(getSubsets({ fullArray: list, idx: 3, noOfItms: itmInBucket }))
